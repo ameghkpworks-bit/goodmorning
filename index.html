@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missed Good Morning Messages ❤️</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .container {
+        background: #fff;
+        width: 100%;
+        max-width: 550px;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    h1 {
+        color: #ff4d6d;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    input[type="date"] {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: 2px solid #ffb3c1;
+        border-radius: 10px;
+        outline: none;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+    }
+
+    .message-box {
+        display: none;
+        background: #fff5f7;
+        border-left: 5px solid #ff4d6d;
+        padding: 20px;
+        border-radius: 12px;
+        color: #444;
+        font-size: 18px;
+        line-height: 1.7;
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    .date-text {
+        display: block;
+        font-weight: bold;
+        color: #ff4d6d;
+        margin-bottom: 12px;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .footer {
+        margin-top: 25px;
+        color: #ff4d6d;
+        font-weight: bold;
+        font-size: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Smrithiiiiii❤️</h1>
+    <p>Select any previous date to see the special Good Morning message I should have sent you. ☀️💕</p>
+
+    <input type="date" id="datePicker">
+
+    <div class="message-box" id="messageBox">
+        <span class="date-text" id="selectedDate"></span>
+        <div id="messageText"></div>
+    </div>
+
+    <div class="footer">
+        Sorry for every missed Good Morning message. You mean everything to me. ❤️😘
+    </div>
+</div>
+
+<script>
+const datePicker = document.getElementById('datePicker');
+const messageBox = document.getElementById('messageBox');
+const selectedDate = document.getElementById('selectedDate');
+const messageText = document.getElementById('messageText');
+
+// Different romantic messages
+const messages = [
+    "Good Morning, my love! ☀️💖 I hope your day is as beautiful as your smile.",
+    "Good Morning, princess! 👑💕 You are the sweetest part of my life.",
+    "Good Morning, baby! 😘💗 Kaanicheruoooooo kanicheruoooo",
+    "Good Morning, sweetheart! 🌸❤️ Thinking of you makes my day perfect.",
+    "Good Morning, my angel! 😇💞 You are always the first thought in my mind.",
+    "Good Morning, beautiful! 🌹💖 Your love brightens my world.",
+    "Good Morning, darling! ☕💕 Sending you hugs, kisses, and all my love.",
+    "Good Morning, cutie! 🥰❤️ I wish I could wake up next to you every day.",
+    "Good Morning, my heart! 💓☀️ Thank you for making my life so special.",
+    "Good Morning, sunshine! 🌞💛 You make every day worth living.",
+    "Good Morning, my forever love! 💍❤️ I adore you more each day.",
+    "Good Morning, sweetheart! 💕 Your smile is my favorite view.",
+    "Good Morning, baby girl! 😘🌷 You are my happiest thought.",
+    "Good Morning, my queen! 👑💖 You deserve all the love in the world.",
+    "Good Morning, love! 💞 Thank you for being my everything."
+];
+
+// Limit to today (no future dates)
+const today = new Date().toISOString().split('T')[0];
+datePicker.max = today;
+
+// Show different message based on selected date
+datePicker.addEventListener('change', function() {
+    const date = new Date(this.value);
+
+    if (!isNaN(date)) {
+        const formattedDate = date.toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        });
+
+        // Use date number to choose a different message
+        const dayNumber = Math.floor(date.getTime() / (1000 * 60 * 60 * 24));
+        const randomMessage = messages[Math.abs(dayNumber) % messages.length];
+
+        selectedDate.textContent = formattedDate;
+        messageText.innerHTML = randomMessage;
+        messageBox.style.display = 'block';
+    }
+});
+</script>
+
+</body>
+</html>
